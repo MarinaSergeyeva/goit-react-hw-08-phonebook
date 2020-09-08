@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./ContactForm.module.css";
+// import styles from "./ContactForm.module.css";
 import { connect } from "react-redux";
 import actions from "../../redux/contacts/contactsActions";
 import operations from "../../redux/operations/operations";
@@ -36,7 +36,6 @@ class ContactForm extends Component {
     }
 
     this.props.onAddContact({ ...this.state });
-    // this.props.onFetchContact();
     this.setState({ name: "", number: "" });
   };
 
@@ -44,7 +43,7 @@ class ContactForm extends Component {
     const { name, number } = this.state;
     return (
       <>
-        <form onSubmit={this.handleSubmit} className={styles.contactForm}>
+        <form onSubmit={this.handleSubmit} className="form">
           <label>
             Name
             <input
@@ -52,6 +51,7 @@ class ContactForm extends Component {
               name="name"
               value={name}
               onChange={this.handleChange}
+              className="input"
             />
           </label>
           <label>
@@ -61,9 +61,12 @@ class ContactForm extends Component {
               name="number"
               value={number}
               onChange={this.handleChange}
+              className="input"
             />
           </label>
-          <button type="submit">Add contact</button>
+          <button type="submit" className="button">
+            Add contact
+          </button>
         </form>
 
         {this.props.items.length > 1 && <Filter />}
@@ -84,7 +87,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   onAddContact: (contact) => dispatch(operations.onAddContact(contact)),
   onChangeAlert: () => dispatch(actions.showAlert()),
-  // onFetchContact: () => dispatch(operations.onFetchContacts())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

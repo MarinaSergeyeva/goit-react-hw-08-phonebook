@@ -1,7 +1,35 @@
 .contactsListItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-radius: 2px;
   box-shadow: 0 0 5px rgb(197, 197, 197);
   padding: 20px;
   background-color: #fff;
   margin-bottom: 10px;
+}
+/* .contactsListItem {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  border-radius: 2px;
+  box-shadow: 0 0 5px rgb(197, 197, 197);
+  padding: 20px;
+  background-color: #fff;
+  margin: 0 auto;
+  margin-bottom: 40px;
+} */
+
+.buttonDel {
+  content: "\2573";
+  cursor: pointer;
+  padding: 10px;
+  background-color: red;
+  outline: none;
+  text-transform: uppercase;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  margin: 5px 0;
 }

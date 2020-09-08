@@ -7,7 +7,11 @@ function PrivateRoute({ component: MyComponent, isAuth, ...rest }) {
     <Route
       {...rest}
       render={(props) => {
-        return isAuth ? <MyComponent {...props} /> : <Redirect to="/" />;
+        return isAuth ? (
+          <MyComponent {...props} />
+        ) : (
+          <Redirect to="/register" />
+        );
       }}
     />
   );
@@ -15,7 +19,7 @@ function PrivateRoute({ component: MyComponent, isAuth, ...rest }) {
 
 const mapStateToProps = (state) => {
   return {
-    isAuth: state.auth.token,
+    isAuth: state.auth.onLogin.token,
   };
 };
 export default connect(mapStateToProps)(PrivateRoute);

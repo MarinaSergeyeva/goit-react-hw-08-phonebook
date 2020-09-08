@@ -1,24 +1,15 @@
 import React, { Component, Suspense } from "react";
-import ContactForm from "./contactForm/ContactForm";
-import ContactsList from "./contactsList/ContactsList";
-import Filter from "./filter/Filter";
 import { CSSTransition } from "react-transition-group";
 import styles from "./App.module.css";
 import Alert from "./Alert/Alert";
 import { connect } from "react-redux";
 import actions from "../redux/contacts/contactsActions";
 import operations from "../redux/operations/operations";
-import AuthForm from "./AuthForm/AuthForm";
-import { Switch, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Contacts from "../pages/Contacts";
+import { Switch } from "react-router-dom";
 import Navigation from "./Navigation/Navigation";
-import Main from "./main/Main";
 import routes from "../routes/routes";
 import PrivateRoute from "../routes/PrivateRoute";
 import PublicRoute from "../routes/PublicRoute";
-
-// import { getLoading, getError } from "../redux/contacts/selectors";
 
 class App extends Component {
   componentDidMount() {
@@ -28,10 +19,19 @@ class App extends Component {
   render() {
     // const loading = useSelector(state => getLoading(state));
     // const error = useSelector(getError);
-    console.log("routes", routes);
     return (
       <>
         {this.props.loading && <h2>LOADING ...</h2>}
+
+        <CSSTransition
+          in={true}
+          timeout={500}
+          classNames={styles}
+          appear={true}
+          unmountOnExit
+        >
+          <p className={styles.sectionTitle}> Phonebook </p>
+        </CSSTransition>
 
         <Navigation />
         <Suspense fallback={<h2>Loading...</h2>}>
@@ -50,18 +50,10 @@ class App extends Component {
           </Switch>
         </Suspense>
 
-        {/* <Alert alert={alert} />
-        <CSSTransition
-          in={true}
-          timeout={500}
-          classNames={styles}
-          appear={true}
-          unmountOnExit
-        >
-          <p className={styles.sectionTitle}> Phonebook </p>
-        </CSSTransition>
-        <ContactForm />
-        {this.props.items.length > 1 && <Filter />}
+        <Alert alert={alert} />
+
+        {/* <ContactForm /> */}
+        {/* {this.props.items.length > 1 && <Filter />}
         {!this.props.error && <ContactsList />}
         {this.props.error && <h2>ERROR ...</h2>} */}
       </>

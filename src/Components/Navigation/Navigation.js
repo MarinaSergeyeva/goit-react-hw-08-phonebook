@@ -1,24 +1,47 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Home from "../../pages/Home";
-import AuthForm from "../AuthForm/AuthForm";
-import ContactsList from "../contactsList/ContactsList";
+import styles from "./Navigation.module.css";
 
 function Navigation() {
   return (
     <nav>
-      <ul>
-        <li>
-          <NavLink to="/">Home</NavLink>
+      <ul className={styles.navigation}>
+        <li className={styles.navigationItem}>
+          <NavLink
+            exact
+            to="/"
+            className={styles.link}
+            activeClassName={styles.linkActive}
+          >
+            Home
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="/contacts">Contacts</NavLink>
+        <li className={styles.navigationItem}>
+          <NavLink
+            to="/contacts"
+            className={styles.link}
+            activeClassName={styles.linkActive}
+          >
+            Contacts
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="/register">Register</NavLink>
+        <li className={styles.navigationItem}>
+          <NavLink
+            to="/register"
+            className={styles.link}
+            activeClassName={styles.linkActive}
+          >
+            Register
+          </NavLink>
         </li>
-        <li>
-          <NavLink to="/login">LogIn</NavLink>
+        <li className={styles.navigationItem}>
+          <NavLink
+            to="/login"
+            className={styles.link}
+            activeClassName={styles.linkActive}
+          >
+            LogIn
+          </NavLink>
         </li>
       </ul>
     </nav>

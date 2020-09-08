@@ -33,7 +33,7 @@ class AuthForm extends Component {
     return (
       <form className="form" onSubmit={this.handleSubmit}>
         <label className="label">
-          Email:
+          Email
           <input
             type="text"
             name="email"
@@ -43,7 +43,7 @@ class AuthForm extends Component {
           />
         </label>
         <label className="label">
-          Password:
+          Password
           <input
             type="text"
             name="password"
