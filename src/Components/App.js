@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import ContactForm from "./contactForm/ContactForm";
 import ContactsList from "./contactsList/ContactsList";
 import Filter from "./filter/Filter";
@@ -8,6 +8,16 @@ import Alert from "./Alert/Alert";
 import { connect } from "react-redux";
 import actions from "../redux/contacts/contactsActions";
 import operations from "../redux/operations/operations";
+import AuthForm from "./AuthForm/AuthForm";
+import { Switch, Route } from "react-router-dom";
+import Home from "../pages/Home";
+import Contacts from "../pages/Contacts";
+import Navigation from "./Navigation/Navigation";
+import Main from "./main/Main";
+import routes from "../routes/routes";
+import PrivateRoute from "../routes/PrivateRoute";
+import PublicRoute from "../routes/PublicRoute";
+
 // import { getLoading, getError } from "../redux/contacts/selectors";
 
 class App extends Component {
@@ -18,38 +28,59 @@ class App extends Component {
   render() {
     // const loading = useSelector(state => getLoading(state));
     // const error = useSelector(getError);
+    console.log("routes", routes);
     return (
       <>
         {this.props.loading && <h2>LOADING ...</h2>}
 
-        <Alert alert={alert} />
-        <CSSTransition in={true} timeout={500} classNames={styles} appear={true} unmountOnExit>
+        <Navigation />
+        <Suspense fallback={<h2>Loading...</h2>}>
+          <Switch>
+            {routes.map((route) =>
+              route.private ? (
+                <PrivateRoute key={route.label} {...route} />
+              ) : (
+                <PublicRoute key={route.label} {...route} />
+              )
+            )}
+            {/* <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={AuthForm} />
+            <Route exact path="/register" component={AuthForm} />
+            <Route exact path="/contacts" component={Main} /> */}
+          </Switch>
+        </Suspense>
+
+        {/* <Alert alert={alert} />
+        <CSSTransition
+          in={true}
+          timeout={500}
+          classNames={styles}
+          appear={true}
+          unmountOnExit
+        >
           <p className={styles.sectionTitle}> Phonebook </p>
         </CSSTransition>
         <ContactForm />
         {this.props.items.length > 1 && <Filter />}
         {!this.props.error && <ContactsList />}
-        {this.props.error && <h2>ERROR ...</h2>}
+        {this.props.error && <h2>ERROR ...</h2>} */}
       </>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   // console.log(state);
   return {
     items: state.contacts.items,
     loading: state.contacts.loading,
-    error: state.contacts.error
+    error: state.contacts.error,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  onChangeFilter: filter => dispatch(actions.changeFilter(filter)),
-  onFetchContact: () => dispatch(operations.onFetchContacts())
+const mapDispatchToProps = (dispatch) => ({
+  onChangeFilter: (filter) => dispatch(actions.changeFilter(filter)),
+  onFetchContact: () => dispatch(operations.onFetchContacts()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
