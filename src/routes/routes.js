@@ -7,7 +7,7 @@ export default [
     exact: true,
     component: lazy(() => import("../pages/Home")),
     private: false,
-    restricted: false,
+    restricted: false
   },
   {
     path: "/register",
@@ -15,7 +15,7 @@ export default [
     exact: true,
     component: lazy(() => import("../Components/authForm/AuthForm")),
     private: false,
-    restricted: true,
+    restricted: true
   },
   {
     path: "/login",
@@ -23,14 +23,22 @@ export default [
     exact: true,
     component: lazy(() => import("../Components/authForm/AuthForm")),
     private: false,
-    restricted: true,
+    restricted: true
   },
+  // {
+  //   path: "/logout",
+  //   label: "Logout",
+  //   exact: true,
+  //   component: lazy(() => import("../pages/Home")),
+  //   private: true,
+  //   restricted: true
+  // },
   {
     path: "/contacts",
     label: "Contacts",
     exact: true,
     component: lazy(() => import("../Components/main/Main")),
     private: true,
-    restricted: false,
-  },
+    restricted: false
+  }
 ];

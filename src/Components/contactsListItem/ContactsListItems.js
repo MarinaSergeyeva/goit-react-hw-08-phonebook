@@ -8,27 +8,25 @@ function ContactsListItems({ contact, onRemoveContact }) {
   // const checkRemove = (e) => {
   //   console.dir(e.target.id);
   // };
-  const deleteItem = (e) => {
+  const deleteItem = e => {
     onRemoveContact(e.target.id);
   };
 
   return (
     <li className={styles.contactsListItem}>
       {contact.name}: {contact.number}
-      <button
-        type="button"
-        id={contact.id}
-        onClick={deleteItem}
-        className={styles.buttonDel}
-      >
-        Delete
+      <button type="button" id={contact.id} onClick={deleteItem} className={styles.buttonDel}>
+        &#215;
       </button>
     </li>
   );
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  onRemoveContact: (id) => dispatch(operations.onRemoveContact(id)),
+const mapDispatchToProps = dispatch => ({
+  onRemoveContact: id => dispatch(operations.onRemoveContact(id))
 });
 
-export default connect(null, mapDispatchToProps)(ContactsListItems);
+export default connect(
+  null,
+  mapDispatchToProps
+)(ContactsListItems);

@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 
 const initialState = {
   email: "",
-  token: "",
+  token: ""
 };
 
 const authReducer = (state = { ...initialState }, { type, payload }) => {
@@ -14,27 +14,29 @@ const authReducer = (state = { ...initialState }, { type, payload }) => {
       return { ...state, ...payload };
     case constants.REGISTER_ERROR:
       return payload;
+    case constants.LOGOUT_SUCCESS:
+      return { ...initialState };
 
     default:
       return state;
   }
 };
 
-const loginReducer = (state = { ...initialState }, { type, payload }) => {
-  switch (type) {
-    case constants.LOGIN_REQUEST:
-      return { ...state };
-    case constants.LOGIN_SUCCESS:
-      return { ...state, ...payload };
-    case constants.LOGOUT_ERROR:
-      return payload;
+// const loginReducer = (state = { ...initialState }, { type, payload }) => {
+//   switch (type) {
+//     case constants.LOGIN_REQUEST:
+//       return { ...state };
+//     case constants.LOGIN_SUCCESS:
+//       return { ...state, ...payload };
+//     case constants.LOGOUT_ERROR:
+//       return payload;
 
-    default:
-      return state;
-  }
-};
+//     default:
+//       return state;
+//   }
+// };
 
 export default combineReducers({
-  onRegister: authReducer,
-  onLogin: loginReducer,
+  onAuth: authReducer
+  // onLogin: loginReducer
 });

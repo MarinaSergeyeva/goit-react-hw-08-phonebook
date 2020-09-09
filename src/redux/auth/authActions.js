@@ -3,43 +3,43 @@ import constants from "./authConstants";
 // REGISTER
 
 const registerRequest = () => ({
-  type: constants.REGISTER_REQUEST,
+  type: constants.REGISTER_REQUEST
 });
-const registerSuccess = (userData) => ({
+const registerSuccess = userData => ({
   type: constants.REGISTER_SUCCESS,
-  payload: { ...userData },
+  payload: { ...userData }
 });
-const registerError = (error) => ({
+const registerError = error => ({
   type: constants.REGISTER_ERROR,
-  payload: error,
+  payload: error
 });
 
 // LOGIN
 
-const loginRequest = () => ({
-  type: constants.LOGIN_REQUEST,
-});
-const loginSuccess = (userData) => ({
-  type: constants.LOGIN_SUCCESS,
-  payload: userData,
-});
-const loginError = (error) => ({
-  type: constants.LOGIN_ERROR,
-  payload: error,
-});
+// const loginRequest = () => ({
+//   type: constants.LOGIN_REQUEST
+// });
+// const loginSuccess = userData => ({
+//   type: constants.LOGIN_SUCCESS,
+//   payload: userData
+// });
+// const loginError = error => ({
+//   type: constants.LOGIN_ERROR,
+//   payload: error
+// });
 
 // LOGOUT
 
-const logoutRequest = () => ({
-  type: constants.LOGOUT_REQUEST,
-});
+// const logoutRequest = () => ({
+//   type: constants.LOGOUT_REQUEST
+// });
 const logoutSuccess = () => ({
-  type: constants.LOGOUT_SUCCESS,
+  type: constants.LOGOUT_SUCCESS
 });
-const logoutError = (error) => ({
-  type: constants.LOGOUT_ERROR,
-  payload: error,
-});
+// const logoutError = error => ({
+//   type: constants.LOGOUT_ERROR,
+//   payload: error
+// });
 
 // GETCURRENTUSER
 
@@ -61,13 +61,13 @@ export default {
   registerSuccess,
   registerError,
 
-  loginRequest,
-  loginSuccess,
-  loginError,
+  // loginRequest,
+  // loginSuccess,
+  // loginError
 
-  logoutRequest,
-  logoutSuccess,
-  logoutError,
+  // logoutRequest,
+  logoutSuccess
+  // logoutError
 
   //   getCurrentUserRequest,
   //   getCurrentUserSuccess,

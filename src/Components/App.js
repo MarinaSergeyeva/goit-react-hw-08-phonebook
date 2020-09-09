@@ -23,26 +23,20 @@ class App extends Component {
       <>
         {this.props.loading && <h2>LOADING ...</h2>}
 
-        <CSSTransition
-          in={true}
-          timeout={500}
-          classNames={styles}
-          appear={true}
-          unmountOnExit
-        >
+        <CSSTransition in={true} timeout={500} classNames={styles} appear={true} unmountOnExit>
           <p className={styles.sectionTitle}> Phonebook </p>
         </CSSTransition>
 
         <Navigation />
         <Suspense fallback={<h2>Loading...</h2>}>
           <Switch>
-            {routes.map((route) =>
-              route.private ? (
+            {routes.map(route => {
+              return route.private ? (
                 <PrivateRoute key={route.label} {...route} />
               ) : (
                 <PublicRoute key={route.label} {...route} />
-              )
-            )}
+              );
+            })}
             {/* <Route exact path="/" component={Home} />
             <Route exact path="/login" component={AuthForm} />
             <Route exact path="/register" component={AuthForm} />
@@ -61,18 +55,21 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   // console.log(state);
   return {
     items: state.contacts.items,
     loading: state.contacts.loading,
-    error: state.contacts.error,
+    error: state.contacts.error
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onChangeFilter: (filter) => dispatch(actions.changeFilter(filter)),
-  onFetchContact: () => dispatch(operations.onFetchContacts()),
+const mapDispatchToProps = dispatch => ({
+  onChangeFilter: filter => dispatch(actions.changeFilter(filter)),
+  onFetchContact: () => dispatch(operations.onFetchContacts())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
